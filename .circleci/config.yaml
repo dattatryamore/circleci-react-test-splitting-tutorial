@@ -11,13 +11,13 @@ jobs:
         steps:
             - checkout
             - node/install-packages:
-                pkg-manager: npm
+                pkg-manager: yarn
             - run: mkdir ~/junit
             - run:
                 name: Test application
                 command: |
                     TEST=$(circleci tests glob "src/__tests__/*.js")
-                    echo "$TEST" | circleci tests run --command="xargs npm test" --split-by=timings
+                    echo "$TEST" | circleci tests run --command="xargs yarn test" --split-by=timings
             - run:
                 command: cp junit.xml ~/junit/
                 when: always
